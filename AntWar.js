@@ -229,4 +229,6 @@ function update(){
 	setTimeout(update, 1000/20);
 }
 
+console.log("hi");
+
 update();
