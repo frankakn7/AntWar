@@ -60,8 +60,7 @@ function ant(	x,y,oldX,oldY,height,width,
 			}
 	    }
 	}
-	
-	this.move = function(){
+	this.move = function(){		
 		if(this.dif > this.difTol){
 			this.moveAngle = Math.atan2(this.moveY, this.moveX)/Math.PI * 180;
 			
@@ -116,6 +115,26 @@ window.onload = function(){
 		generateAnt(Math.floor(Math.random()*1200),Math.floor(Math.random()*650));
 	}
 }
+
+document.getElementById("RandomMoveSpot").onclick = (function() {
+	
+	var randomX = Math.random()*1200;
+	var randomY = Math.random()*650;
+	
+	for(var i in ants){
+		ants[i].movePosX = randomX;
+		ants[i].movePosY = randomY;
+		
+		ants[i].moveX = randomX;
+		ants[i].moveY = randomY;
+		
+		ants[i].moveX -= ants[i].x;
+		ants[i].moveY -= ants[i].y;
+		
+		ants[i].dif = Math.abs(randomX - ants[i].x)+Math.abs(randomY - ants[i].y);
+
+	}
+});
 
 function update(){
 	ctx.clearRect(0,0,1200,650);
