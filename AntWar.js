@@ -72,8 +72,6 @@ canvas.addEventListener('mouseup', function(evt){
 	}
 });
 
-console.log("TEst Branch");
-
 var ants = [];
 var antNum = 1;
 
