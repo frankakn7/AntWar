@@ -31,22 +31,21 @@ function ant(	x,y,oldX,oldY,height,width,
 		            && this.y <= ants[i].y + ants[i].height - ants[i].spdY
 		            && ants[i].y <= this.y + this.height - ants[i].spdY){
 			        
-					//ctx.clearRect(this.x,this.y,this.width,this.height);
 					if(this.dif > ants[i].dif){
 						if(this.oldX != this.x || this.oldY != this.y){
 							this.x = this.oldX;
 							this.y = this.oldY;
 						}
-					}else{
-						if(ants[i].oldX != ants[i].x || ants[i].oldY != ants[i].y){
-							ants[i].x = ants[i].oldX;
-							ants[i].y = ants[i].oldY;
-						}
 					}
-					//ctx.drawImage(antImg,this.x,this.y);
 		        }
 			}
 	    }
+	}
+	
+	this.blocked = function(){
+		if(this.dif > this.difTol && this.oldX === this.x && this.oldY === this.y){
+			return true;
+		}
 	}
 	
 	this.move = function(){
@@ -60,7 +59,7 @@ function ant(	x,y,oldX,oldY,height,width,
 			
 			this.oldX = this.x;
 			this.oldY = this.y;
-				
+					
 			this.x += this.spdX;
 			this.y += this.spdY;
 			
@@ -80,6 +79,18 @@ function ant(	x,y,oldX,oldY,height,width,
 	
 	this.drawSelectBox = function() {
 		OutlineRect(this.x-3, this.y-3, this.x+this.width+3, this.y+this.height+3, 'green');
+	}
+	
+	this.draw = function(){
+		if(this.blocked()){
+			ctx.fillStyle = 'red';
+		}else{
+			ctx.fillStyle = 'black';
+		}
+		ctx.fillRect(this.x,this.y,this.width,this.height);
+		if(this.selected){
+			this.drawSelectBox();
+		}
 	}
 }
 

@@ -9,12 +9,7 @@ function update(){
 		
 		ants[i].move();
 		ants[i].detect();
-		ctx.fillStyle = 'black';
-		ctx.fillRect(ants[i].x,ants[i].y,ants[i].width,ants[i].height);
-		
-		if(ants[i].selected){
-			ants[i].drawSelectBox();
-		}
+		ants[i].draw();
 		
 		if(isMouseDragging){
 			OutlineRect(lassoX1, lassoY1, lassoX2, lassoY2, 'red')
